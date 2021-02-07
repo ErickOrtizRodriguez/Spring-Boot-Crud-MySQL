@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="index :: head">
+<body>
+
+  <div class="container">
+    <nav th:replace="index :: nav"></nav>
+  </div>
+
+  <div class="container  col-9 mt-5">
+  <h2>Lista de Datos</h2>
+  <!-- <a th:href="@{/new}" class="btn btn-primary">Nuevo</a>-->
+  <table class="table">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="datos:${datos}" class="text-center">
+        <th scope="row" th:text="${datos.id}"></th>
+        <td th:text="${datos.nombre}"></td>
+        <td th:text="${datos.apellido}"></td>
+        <td th:text="${datos.telefono}"></td>
+        <td class="">
+          <a th:href="@{/editar/} + ${datos.id}" class="btn btn-warning" href=""><i class="bi bi-pencil-square"></i></a>
+          <!-- <a th:onclick="'eliminar('+*{datos.id}+')'" class="btn btn-danger" href="">Eliminar</a> -->
+          <a id="myBtn" class="btn btn-danger" th:href="@{/eliminar} + ${datos.id}"><i class="bi bi-trash-fill"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+</body>
+</html>
